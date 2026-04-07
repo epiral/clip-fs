@@ -1,5 +1,5 @@
 {
-  "name": "@pinix/fs",
+  "name": "@yan5xu/fs",
   "version": "0.1.0",
   "description": "Sandboxed filesystem for AI agents — read, write, list, copy, move, delete files in ~/.pinix/workspace/",
   "runtime": "bun",
