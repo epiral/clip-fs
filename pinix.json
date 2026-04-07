@@ -1,0 +1,10 @@
+{
+  "name": "@pinix/fs",
+  "version": "0.1.0",
+  "description": "Sandboxed filesystem for AI agents — read, write, list, copy, move, delete files in ~/.pinix/workspace/",
+  "runtime": "bun",
+  "main": "index.ts",
+  "author": "yan5xu",
+  "license": "MIT",
+  "repository": "https://github.com/epiral/clip-fs"
+}
