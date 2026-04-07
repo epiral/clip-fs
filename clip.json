@@ -4,6 +4,7 @@
   "description": "Sandboxed filesystem for AI agents — read, write, list, copy, move, delete files in ~/.pinix/workspace/",
   "runtime": "bun",
   "main": "index.ts",
+  "web": "web/",
   "author": "yan5xu",
   "license": "MIT",
   "repository": "https://github.com/epiral/clip-fs"
