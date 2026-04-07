@@ -1,19 +1,13 @@
-const HUB_URL = window.location.origin;
-const CLIP_NAME = "fs";
+import { createHubClient, hubInvoke } from "@pinixai/hub-client";
 
-export async function invoke(command: string, input: Record<string, unknown>) {
-  const resp = await fetch(`${HUB_URL}/pinix.v2.HubService/Invoke`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      clipName: CLIP_NAME,
-      command,
-      input: btoa(JSON.stringify(input)),
-    }),
-  });
-  const data = await resp.json();
-  if (data.error) throw new Error(data.error.message || data.error);
-  return JSON.parse(atob(data.output));
+const client = createHubClient({
+  baseUrl: window.location.origin,
+});
+
+const CLIP = "fs";
+
+async function invoke(command: string, input: Record<string, unknown>): Promise<any> {
+  return hubInvoke(client, CLIP, command, input);
 }
 
 export interface Entry {
@@ -60,5 +54,16 @@ export const mv = (
   dst: string,
 ): Promise<{ src: string; dst: string }> => invoke("mv", { src, dst });
 
+export const cp = (
+  src: string,
+  dst: string,
+): Promise<{ src: string; dst: string }> => invoke("cp", { src, dst });
+
 export const stat = (path: string): Promise<StatResult> =>
   invoke("stat", { path });
+
+export const find = (
+  pattern: string,
+  path?: string,
+): Promise<any> =>
+  invoke("find", { pattern, ...(path ? { path } : {}) });
